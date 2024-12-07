@@ -1,15 +1,29 @@
 # AuthZEN Interop PDP Example
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)  
-Experimental PDP implementation with OPA for AuthZEN interop.
+Experimental PDP implementation with OPA for [AuthZEN interop](https://authzen-interop.net/).
 
 ## How to run
 
+This PDP works with [AuthZEN Interop TODO Application](https://github.com/openid/authzen/tree/main/interop).
+
+1) Execute the following command to start PDP. (default port is 8001)
+
 ```bash
-$ go run .
+authzen-interop-pdp-example $ go run main.go
 ```
 
+2) Clone [authzen-todo-backend](https://github.com/openid/authzen/tree/main/interop/authzen-todo-backend) and execute the following command to test the PDP as the target.
+
+```bash
+authzen-todo-backend $ yarn build
+authzen-todo-backend $ yarn test http://localhost:8001
+```
+
+You will be able to get results like below.  
+(Note that the specification version referenced by this implementation is [Authorization API 1.1 – draft 01](https://openid.github.io/authzen/authorization-api-1_1_01)). So, results with other versions are not guaranteed.)
+
 <details>
-<summary>Result </summary>
+<summary>Output </summary>
 
 ```
 $ yarn test http://localhost:8001
@@ -63,3 +77,4 @@ PASS REQ: {"subject":{"type":"user","id":"CiRmZDQ2MTRkMy1jMzlhLTQ3ODEtYjdiZC04Yj
 ## References
 - https://github.com/openid/authzen
 - https://openid.net/wg/authzen/specifications/
+- https://csrc.nist.gov/pubs/sp/800/162/upd2/final

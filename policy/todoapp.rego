@@ -6,23 +6,36 @@ default decision := false
 
 decision if {
 	roles[input.subject.id][_] == "viewer"
-	actions["viewer"][_] == input.action.name
+	actions.viewer[_] == input.action.name
 }
 
 decision if {
-	roles[input.subject.id][_] == "editor"
-	actions.editor[_] == input.action.name
-	input.owner_id in [input.email, ""]
+    roles[input.subject.id][_] == "editor"
+    actions.editor[_] == input.action.name
+    recource_ckeck
+}
+
+resource_ckeck if {
+    not input.resource.properties
+}
+
+recource_ckeck if {
+    input.resource.properties
+    not input.resource.properties.ownerID
+}
+
+recource_ckeck if {
+    input.resource.properties.ownerID == input.email
 }
 
 decision if {
 	roles[input.subject.id][_] == "admin"
-	actions["admin"][_] == input.action.name
+	actions.admin[_] == input.action.name
 }
 
 decision if {
 	roles[input.subject.id][_] == "evil_genius"
-	actions["evil_genius"][_] == input.action.name
+	actions.evil_genius[_] == input.action.name
 }
 
 roles := {

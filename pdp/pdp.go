@@ -119,7 +119,6 @@ func Evaluation(w http.ResponseWriter, r *http.Request) {
 			"subject":  aer.Subject,
 			"action":   aer.Action,
 			"resource": aer.Resource,
-			"owner_id": aer.Resource.Properties.OwnerID,
 			"email":    attr.Email,
 		}),
 	)
