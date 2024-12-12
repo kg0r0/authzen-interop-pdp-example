@@ -1,29 +1,38 @@
 # AuthZEN Interop PDP Example
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)  
-Experimental PDP implementation with OPA for [AuthZEN interop](https://authzen-interop.net/).
+Experimental PDP implementation with OPA for [OpenID AuthZEN interop](https://authzen-interop.net/).
 
-## How to run
+[OpenID AuthZEN Interop](https://authzen-interop.net/) is interoperability testing and results for AuthZEN implementations.  
+This implementation works as a PDP (Policy Decision Point) as defined in the [NIST SP 800-162](https://csrc.nist.gov/pubs/sp/800/162/upd2/final). In addition, it also stores information that is expected to come from PIP (Policy Information Point) and PAP (Policy Administration Point). So, it can receive requests from PEP and evaluate access immediately after starting up.
 
-This PDP works with [AuthZEN Interop TODO Application](https://github.com/openid/authzen/tree/main/interop).
+## Usage
 
-1) Execute the following command to start PDP. (default port is 8001)
+This PDP works with [AuthZEN Interop TODO Application](https://github.com/openid/authzen/tree/main/interop). If you are only testing AuthZEN Interop, you can send requests directly from PEP to PDP, so there is no need to configure the front end. 
+
+![](https://github.com/kg0r0/authzen-interop-pdp-example/blob/assets/todoapp.drawio.png?raw=true)
+
+### Try AUthZEN Interop with this PDP implementation
+
+1) Execute the following command to start PDP (default port is `8001`):
 
 ```bash
-authzen-interop-pdp-example $ go run main.go
+$ git clone 
+$ go run main.go
 ```
 
-2) Clone [authzen-todo-backend](https://github.com/openid/authzen/tree/main/interop/authzen-todo-backend) and execute the following command to test the PDP as the target.
+2) Clone [authzen-todo-backend](https://github.com/openid/authzen/tree/main/interop/authzen-todo-backend) and execute the following command to test the PDP as the target:
 
 ```bash
-authzen-todo-backend $ yarn build
-authzen-todo-backend $ yarn test http://localhost:8001
+$ git clone https://github.com/openid/authzen.git
+$ cd interop/authzen-todo-backend
+$ yarn build
+$ yarn test http://localhost:8001
 ```
 
-You will be able to get results like below.  
-(Note that the specification version referenced by this implementation is [Authorization API 1.1 – draft 01](https://openid.github.io/authzen/authorization-api-1_1_01)). So, results with other versions are not guaranteed.)
+You will be able to get results like below:
 
 <details>
-<summary>Output </summary>
+<summary> Result </summary>
 
 ```
 $ yarn test http://localhost:8001
@@ -70,9 +79,12 @@ PASS REQ: {"subject":{"type":"user","id":"CiRmZDQ2MTRkMy1jMzlhLTQ3ODEtYjdiZC04Yj
 PASS REQ: {"subject":{"type":"user","id":"CiRmZDQ2MTRkMy1jMzlhLTQ3ODEtYjdiZC04Yjk2ZjVhNTEwMGQSBWxvY2Fs"},"action":{"name":"can_delete_todo"},"resource":{"type":"todo","id":"7240d0db-8ff0-41ec-98b2-34a096273b92","properties":{"ownerID":"rick@the-citadel.com"}}}
 PASS REQ: {"subject":{"type":"user","id":"CiRmZDQ2MTRkMy1jMzlhLTQ3ODEtYjdiZC04Yjk2ZjVhNTEwMGQSBWxvY2Fs"},"action":{"name":"can_delete_todo"},"resource":{"type":"todo","id":"240d0db-8ff0-41ec-98b2-34a096273b95","properties":{"ownerID":"jerry@the-smiths.com"}}}
 ✨  Done in 0.42s.
-  ```
+```
 
-  </details>
+</details>
+
+You can see the request and response payloads for each of the API requests in the [Todo interop scenario.](https://authzen-interop.net/docs/scenarios/todo-1.1/#overview-of-the-scenario).  
+I've confirmed that this PDP implementation passes the test in [Authorization API 1.1 – draft 01](https://openid.github.io/authzen/authorization-api-1_1_01)). However, test results for other versions are unconfirmed.
 
 ## References
 - https://github.com/openid/authzen
