@@ -15,6 +15,8 @@ func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/access/v1/evaluation", pdp.Evaluation)
+	// TODO: Implement the Access Evaluations API
+	// Ref: https://openid.github.io/authzen/authorization-api-1_1_01#name-access-evaluations-api
 	r.HandleFunc("/access/v1/evaluations", pdp.Evaluation)
 	r.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		slog.Info("Not found", "path", r.URL.Path)
