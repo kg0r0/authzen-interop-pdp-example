@@ -83,8 +83,8 @@ PASS REQ: {"subject":{"type":"user","id":"CiRmZDQ2MTRkMy1jMzlhLTQ3ODEtYjdiZC04Yj
 
 </details>
 
-You can see the request and response payloads for each of the API requests in the [Todo interop scenario.](https://authzen-interop.net/docs/scenarios/todo-1.1/#overview-of-the-scenario).  
-I've confirmed that this PDP implementation passes the test in [Authorization API 1.1 – draft 01](https://openid.github.io/authzen/authorization-api-1_1_01)). However, test results for other versions are unconfirmed.
+**Note:** You can see the request and response payloads for each of the API requests in the [Todo interop scenario.](https://authzen-interop.net/docs/scenarios/todo-1.1/#overview-of-the-scenario).  
+I've confirmed that this PDP implementation passes the test in [Authorization API 1.1 – draft 01](https://openid.github.io/authzen/authorization-api-1_1_01). However, test results for other versions are unconfirmed.
 
 ## References
 - https://github.com/openid/authzen
